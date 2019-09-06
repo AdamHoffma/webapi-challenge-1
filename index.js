@@ -15,7 +15,7 @@ Go code!
 
 const server = require('./api/server.js')
 
-const port = 8000
+const port = 8001
 
 server.listen(port, () => {
     console.log(`\n** Server running on PORT ${port} **\n`)

@@ -5,7 +5,7 @@ const ActionRouter = require ('./ActionRouter.js')
 
 const server = express()
 
-server.use('/api', ProjectRouter)
-server.use('/api', ActionRouter)
+server.use('/api/projects', ProjectRouter)
+server.use('/api/actions', ActionRouter)
 
 module.exports = server

@@ -6,11 +6,9 @@ const router = express.Router()
 
 router.use(express.json())
 
-router.get('/', (req, res) => {
-    res.status(200).json({api: 'up'})
-})
 
-router.get('/all', (req, res) => {
+
+router.get('/', (req, res) => {
     db.get()
     .then(project => {
         res.status(200).json(project)
@@ -28,15 +26,15 @@ router.get('/:proid', (req, res) => {
     })
 })
 
-router.post('/:pro_id', (req, res) => {
+router.post('/', (req, res) => {
     const newPro = req.body
     
     if (!newPro.name || !newPro.description) {
         res.status(400).json({message: "Please provide a name and description"})
     } else {
         db.insert(newPro)
-        .then(post => {
-            db.get(post.id).then(project => {
+        .then(project => {
+            db.get(project.id).then(project => {
                 res.status(201).json(project)
             })
         })
@@ -68,7 +66,7 @@ router.put('/:proid', (req, res) => {
     }
 })
 
-router.delete('./:proid', (req, res) => {
+router.delete('/:proid', (req, res) => {
     const proId = req.params.proid
     db.remove(proId)
     .then(project => {
@@ -82,6 +80,7 @@ router.delete('./:proid', (req, res) => {
         res.status(500).json({error: "Could not delete project"})
     })
 })
+
 
 
 
